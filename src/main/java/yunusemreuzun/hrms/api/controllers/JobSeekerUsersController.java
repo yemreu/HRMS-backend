@@ -25,4 +25,9 @@ public class JobSeekerUsersController {
 	public Result register(@RequestBody JobSeekerUser jobSeekerUser) {
 		return jobSeekerUserService.register(jobSeekerUser);
 	}
+	
+	@PostMapping("/verify")
+	public Result register(@RequestBody String token) {
+		return jobSeekerUserService.verify(token);
+	}
 }

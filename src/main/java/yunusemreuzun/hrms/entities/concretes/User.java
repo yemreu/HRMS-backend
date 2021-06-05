@@ -32,6 +32,6 @@ public class User {
 	@Column(name = "password")
 	private String password;
 	
-	@Column(name = "verified")
-	private boolean verified;
+	@Column(name = "active")
+	private boolean active;
 }

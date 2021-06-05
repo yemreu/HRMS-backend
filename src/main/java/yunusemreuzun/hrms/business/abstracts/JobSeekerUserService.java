@@ -6,4 +6,5 @@ import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
 public interface JobSeekerUserService {
 
 	Result register(JobSeekerUser jobSeekerUser);
+	Result verify(String token);
 }
