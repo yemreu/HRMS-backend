@@ -14,7 +14,7 @@ import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
 @RequestMapping("/api/users/job-seekers")
 public class JobSeekerUsersController {
 
-	JobSeekerUserService jobSeekerUserService;
+	private JobSeekerUserService jobSeekerUserService;
 
 	@Autowired
 	public JobSeekerUsersController(JobSeekerUserService jobSeekerUserService) {
@@ -24,10 +24,5 @@ public class JobSeekerUsersController {
 	@PostMapping("/register")
 	public Result register(@RequestBody JobSeekerUser jobSeekerUser) {
 		return jobSeekerUserService.register(jobSeekerUser);
-	}
-	
-	@PostMapping("/verify")
-	public Result register(@RequestBody String token) {
-		return jobSeekerUserService.verify(token);
 	}
 }

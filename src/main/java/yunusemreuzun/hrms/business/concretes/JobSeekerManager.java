@@ -3,8 +3,6 @@ package yunusemreuzun.hrms.business.concretes;
 import java.rmi.RemoteException;
 import java.util.Collections;
 import java.util.Map;
-import java.util.NoSuchElementException;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +13,6 @@ import yunusemreuzun.hrms.core.utilities.generators.RandomStringGenerator;
 import yunusemreuzun.hrms.core.utilities.results.ErrorResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
-import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.JobSeekerUserDao;
 import yunusemreuzun.hrms.dataAccess.abstracts.VerificationTokenDao;
 import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
@@ -60,20 +57,6 @@ public class JobSeekerManager implements JobSeekerUserService{
 		verificationTokenDao.save(new VerificationToken(jobSeekerUserDao.findByEmail(jobSeekerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));
 		verificationEmailSender.send(jobSeekerUser.getEmail(), token.get("token"));
 		return new SuccessDataResult<Map<String, String>>(token,"Başarıyla kayıt olundu. ");
-	}
-
-	@Override
-	public Result verify(String token) {
-		try {
-			int userId = verificationTokenDao.findByToken(token).stream().findFirst().get().getUserId();
-			JobSeekerUser user = jobSeekerUserDao.findById(userId);
-			user.setActive(true);
-			jobSeekerUserDao.save(user);
-			verificationTokenDao.deleteById(userId);
-		} catch (NoSuchElementException e) {
-			return new ErrorResult("Doğrulama kodu bulunamadı.");
-		}
-		return new SuccessResult("Doğrulama başarılı");
 	}
 
 }
