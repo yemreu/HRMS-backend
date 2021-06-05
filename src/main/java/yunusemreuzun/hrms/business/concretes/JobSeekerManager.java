@@ -2,6 +2,7 @@ package yunusemreuzun.hrms.business.concretes;
 
 import java.rmi.RemoteException;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,6 +11,7 @@ import yunusemreuzun.hrms.business.abstracts.JobSeekerUserService;
 import yunusemreuzun.hrms.business.concretes.senders.VerificationEmailSender;
 import yunusemreuzun.hrms.business.concretes.validators.JobSeekerUserValidator;
 import yunusemreuzun.hrms.core.utilities.generators.RandomStringGenerator;
+import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.ErrorResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
@@ -59,4 +61,8 @@ public class JobSeekerManager implements JobSeekerUserService{
 		return new SuccessDataResult<Map<String, String>>(token,"Başarıyla kayıt olundu. ");
 	}
 
+	@Override
+	public DataResult<List<JobSeekerUser>> getAll() {
+		return new SuccessDataResult<List<JobSeekerUser>>(jobSeekerUserDao.findAll(), "İş arayanlar listelendi.");
+	}
 }

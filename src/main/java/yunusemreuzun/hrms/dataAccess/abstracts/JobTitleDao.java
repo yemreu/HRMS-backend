@@ -6,4 +6,5 @@ import yunusemreuzun.hrms.entities.concretes.JobTitle;
 
 public interface JobTitleDao extends JpaRepository<JobTitle, Integer>{
 
+	boolean existsByTitle(String title);
 }

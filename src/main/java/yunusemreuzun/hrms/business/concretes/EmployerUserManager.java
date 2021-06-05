@@ -1,6 +1,7 @@
 package yunusemreuzun.hrms.business.concretes;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import yunusemreuzun.hrms.business.abstracts.EmployerUserService;
 import yunusemreuzun.hrms.business.concretes.senders.VerificationEmailSender;
 import yunusemreuzun.hrms.business.concretes.validators.EmployerUserValidator;
 import yunusemreuzun.hrms.core.utilities.generators.RandomStringGenerator;
+import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.ErrorResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
@@ -61,4 +63,8 @@ public class EmployerUserManager implements EmployerUserService{
 		return new SuccessResult("Şirket doğrulaması başarılı");
 	}
 	
+	@Override
+	public DataResult<List<EmployerUser>> getAll() {
+		return new SuccessDataResult<List<EmployerUser>>(employerUserDao.findAll(), "İş verenler listelendi.");
+	}
 }
