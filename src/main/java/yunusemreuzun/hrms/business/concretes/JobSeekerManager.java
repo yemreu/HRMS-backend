@@ -56,7 +56,7 @@ public class JobSeekerManager implements JobSeekerUserService{
 		}
 		jobSeekerUserDao.save(jobSeekerUser);
 		Map<String,String> token = Collections.singletonMap("token", new RandomStringGenerator().generateRandomAlphanumericString(100));
-		verificationTokenDao.save(new VerificationToken(jobSeekerUserDao.findByEmail(jobSeekerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));
+		verificationTokenDao.save(new VerificationToken(jobSeekerUserDao.getByEmail(jobSeekerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));
 		verificationEmailSender.send(jobSeekerUser.getEmail(), token.get("token"));
 		return new SuccessDataResult<Map<String, String>>(token,"Başarıyla kayıt olundu. ");
 	}

@@ -28,8 +28,8 @@ public class UserVerificationManager implements UserVerificationService{
 	@Override
 	public Result verify(String token) {
 		try {
-			int id = verificationTokenDao.findByToken(token).stream().findFirst().get().getUserId();
-			User user = userDao.findById(id);
+			int id = verificationTokenDao.getByToken(token).stream().findFirst().get().getUserId();
+			User user = userDao.getById(id);
 			user.setActive(true);
 			userDao.save(user);
 			verificationTokenDao.deleteById(id);

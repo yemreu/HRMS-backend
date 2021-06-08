@@ -9,5 +9,5 @@ import yunusemreuzun.hrms.entities.concretes.VerificationToken;
 
 public interface VerificationTokenDao extends JpaRepository<VerificationToken, Integer>{
 
-	List<UserIdOnly> findByToken(String token);
+	List<UserIdOnly> getByToken(String token);
 }

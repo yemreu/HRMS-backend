@@ -50,14 +50,14 @@ public class EmployerUserManager implements EmployerUserService{
 		}
 		employerUserDao.save(employerUser);
 		Map<String,String> token = Collections.singletonMap("token", new RandomStringGenerator().generateRandomAlphanumericString(100));
-		verificationTokenDao.save(new VerificationToken(employerUserDao.findByEmail(employerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));
+		verificationTokenDao.save(new VerificationToken(employerUserDao.getByEmail(employerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));
 		verificationEmailSender.send(employerUser.getEmail(), token.get("token"));
 		return new SuccessDataResult<Map<String, String>>(token,"Başarıyla kayıt olundu. ");
 	}
 	
 	@Override
 	public Result verify(int companyId) {
-		EmployerUser user = employerUserDao.findById(companyId);
+		EmployerUser user = employerUserDao.getById(companyId);
 		user.setVerifiedCompany(true);
 		employerUserDao.save(user);
 		return new SuccessResult("Şirket doğrulaması başarılı");

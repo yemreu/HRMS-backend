@@ -11,6 +11,6 @@ public interface JobSeekerUserDao extends JpaRepository<JobSeekerUser, Integer>{
 
 	boolean existsByEmail(String email);
 	boolean existsByNationalIdentity(String nationalIdentity);
-	List<IdOnly> findByEmail(String email);
+	List<IdOnly> getByEmail(String email);
 	
 }

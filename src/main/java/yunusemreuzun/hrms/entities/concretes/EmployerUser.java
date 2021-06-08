@@ -1,7 +1,10 @@
 package yunusemreuzun.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -30,4 +33,7 @@ public class EmployerUser extends User{
 	
 	@Column(name = "verified_company")
 	private boolean verifiedCompany;
+	
+	@OneToMany(mappedBy = "employer")
+	private List<Job> jobs;
 }
