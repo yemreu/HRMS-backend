@@ -43,7 +43,7 @@ public class Job {
 	private LocalDate lastApplicationDate;
 	
 	@Column(name = "active")
-	private boolean active;
+	private boolean active = true;
 	
 	@ManyToOne
 	@JoinColumn(name = "employer_user_id")
@@ -51,7 +51,7 @@ public class Job {
 	
 	@ManyToOne
 	@JoinColumn(name = "job_title_id")
-	private JobTitle title;
+	private JobTitle jobTitle;
 	
 	@ManyToOne
 	@JoinColumn(name = "city_code")
