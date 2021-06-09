@@ -30,14 +30,17 @@ public class Job {
 	@Column(name = "description")
 	private String description;
 	
-	@Column(name = "salary_range")
-	private String salaryRange;
+	@Column(name = "min_salary")
+	private String minSalary;
+	
+	@Column(name = "max_salary")
+	private String maxSalary;
 	
 	@Column(name = "vacancy")
 	private int vacancy;
 	
 	@Column(name = "posting_date")
-	private LocalDate postingDate;
+	private LocalDate postingDate = LocalDate.now();
 	
 	@Column(name = "last_application_date")
 	private LocalDate lastApplicationDate;

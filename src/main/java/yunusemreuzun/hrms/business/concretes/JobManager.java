@@ -1,5 +1,6 @@
 package yunusemreuzun.hrms.business.concretes;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,8 +15,8 @@ import yunusemreuzun.hrms.dataAccess.abstracts.JobDao;
 import yunusemreuzun.hrms.entities.concretes.Job;
 
 @Service
-public class JobManager implements JobService{
-	
+public class JobManager implements JobService {
+
 	private JobDao jobDao;
 
 	@Autowired
@@ -32,6 +33,18 @@ public class JobManager implements JobService{
 	@Override
 	public DataResult<List<Job>> getActiveJobs() {
 		return new SuccessDataResult<List<Job>>(jobDao.getByActiveTrue(), "Tüm aktif iş ilanları listelendi.");
+	}
+
+	@Override
+	public DataResult<List<Job>> getEmployerActiveJobs(int userId) {
+		return new SuccessDataResult<List<Job>>(jobDao.getByEmployer_IdAndActiveTrue(userId),
+				"İşverene ait tüm aktif iş ilanları listelendi.");
+	}
+
+	@Override
+	public DataResult<List<Job>> getActiveJobsWithLastApplicationDate(LocalDate date) {
+		return new SuccessDataResult<List<Job>>(jobDao.getByLastApplicationDateAndActiveTrue(date),
+				"Tüm aktif ilanları tarihe göre sıralandı.");
 	}
 
 }
