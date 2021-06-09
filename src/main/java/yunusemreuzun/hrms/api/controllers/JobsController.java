@@ -48,5 +48,10 @@ public class JobsController {
 	public DataResult<List<Job>> getActiveJobsWithLastApplicationDate(@RequestParam @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
 		return jobService.getActiveJobsWithLastApplicationDate(date);
 	}
+	
+	@PostMapping("/deactivate-job")
+	public Result deactivateJob(@RequestParam int id) {
+		return jobService.deactivateJob(id);
+	}
 
 }

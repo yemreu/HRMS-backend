@@ -47,4 +47,12 @@ public class JobManager implements JobService {
 				"Tüm aktif ilanları tarihe göre sıralandı.");
 	}
 
+	@Override
+	public Result deactivateJob(int id) {
+		Job job = jobDao.getById(id);
+		job.setActive(false);
+		jobDao.save(job);
+		return new SuccessResult("İş ilanı kaldırıldı.");
+	}
+
 }

@@ -14,4 +14,6 @@ public interface JobDao extends JpaRepository<Job, Integer>{
 	List<Job> getByEmployer_IdAndActiveTrue(int userId);
 	
 	List<Job> getByLastApplicationDateAndActiveTrue(LocalDate date);
+	
+	Job getById(int id);
 }

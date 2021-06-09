@@ -16,4 +16,6 @@ public interface JobService {
 	DataResult<List<Job>> getEmployerActiveJobs(int userId);
 	
 	DataResult<List<Job>> getActiveJobsWithLastApplicationDate(LocalDate date);
+	
+	Result deactivateJob(int id);
 }
