@@ -11,7 +11,7 @@ import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.Job;
 
 @RestController
-@RequestMapping("api/jobs")
+@RequestMapping("/api/jobs")
 public class JobsController {
 
 	private JobService jobService;
