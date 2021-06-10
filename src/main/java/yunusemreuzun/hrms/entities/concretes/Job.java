@@ -50,7 +50,7 @@ public class Job {
 	
 	@ManyToOne
 	@JoinColumn(name = "employer_user_id")
-	private EmployerUser employer;
+	private EmployerUser employerUser;
 	
 	@ManyToOne
 	@JoinColumn(name = "job_title_id")

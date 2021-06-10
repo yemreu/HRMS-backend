@@ -37,6 +37,6 @@ public class EmployerUser extends User{
 	@Column(name = "verified_company")
 	private boolean verifiedCompany;
 	
-	@OneToMany(mappedBy = "employer")
+	@OneToMany(mappedBy = "employerUser")
 	private List<Job> jobs;
 }

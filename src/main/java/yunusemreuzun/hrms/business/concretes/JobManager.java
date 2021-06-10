@@ -37,7 +37,7 @@ public class JobManager implements JobService {
 
 	@Override
 	public DataResult<List<Job>> getEmployerActiveJobs(int userId) {
-		return new SuccessDataResult<List<Job>>(jobDao.getByEmployer_IdAndActiveTrue(userId),
+		return new SuccessDataResult<List<Job>>(jobDao.getByEmployerUser_IdAndActiveTrue(userId),
 				"İşverene ait tüm aktif iş ilanları listelendi.");
 	}
 
