@@ -6,7 +6,7 @@ import yunusemreuzun.hrms.entities.concretes.Cv;
 
 public interface CvService {
 
-	Result add(Cv cv);
+	Result save(Cv cv);
 	
-	DataResult<Cv> getSeekerCvs(int id);
+	DataResult<Cv> getSeekerCv(int id);
 }

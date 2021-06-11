@@ -22,15 +22,17 @@ public class CvManager implements CvService{
 	}
 
 	@Override
-	public Result add(Cv cv) {
+	public Result save(Cv cv) {
 		cv.getEducations().forEach(education -> education.setCv(cv));
+		cv.getExperiences().forEach(experience -> experience.setCv(cv));
+		cv.getLanguages().forEach(language -> language.setCv(cv));
 		cvDao.save(cv);
 		return new SuccessResult("Cv kaydedildi.");
 	}
 
 	@Override
-	public DataResult<Cv> getSeekerCvs(int id) {
-		return new SuccessDataResult<Cv>(cvDao.getByJobSeekerUser_Id(id), "İş arayanın cvleri listelendi.");
+	public DataResult<Cv> getSeekerCv(int id) {
+		return new SuccessDataResult<Cv>(cvDao.getByJobSeekerUser_Id(id), "İş arayanın cv'si listelendi.");
 	}
 
 }

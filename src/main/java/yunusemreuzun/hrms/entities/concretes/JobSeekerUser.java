@@ -1,5 +1,6 @@
 package yunusemreuzun.hrms.entities.concretes;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToOne;
@@ -34,6 +35,6 @@ public class JobSeekerUser extends User{
 	@Column(name = "year_of_birth")
 	private String yearOfBirth;
 	
-	@OneToOne(mappedBy = "jobSeekerUser")
+	@OneToOne(mappedBy = "jobSeekerUser", cascade = CascadeType.ALL)
 	private Cv cv;
 }

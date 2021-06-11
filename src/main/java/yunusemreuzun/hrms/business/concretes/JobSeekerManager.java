@@ -17,6 +17,7 @@ import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.JobSeekerUserDao;
 import yunusemreuzun.hrms.dataAccess.abstracts.VerificationTokenDao;
+import yunusemreuzun.hrms.entities.concretes.Cv;
 import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
 import yunusemreuzun.hrms.entities.concretes.VerificationToken;
 
@@ -54,6 +55,8 @@ public class JobSeekerManager implements JobSeekerUserService{
 		if(jobSeekerUserDao.existsByNationalIdentity(jobSeekerUser.getNationalIdentity())) {
 			return new ErrorResult("Bu kimlik numarası kullanılıyor.");
 		}
+		jobSeekerUser.setCv(new Cv());
+		jobSeekerUser.getCv().setJobSeekerUser(jobSeekerUser);
 		jobSeekerUserDao.save(jobSeekerUser);
 		Map<String,String> token = Collections.singletonMap("token", new RandomStringGenerator().generateRandomAlphanumericString(100));
 		verificationTokenDao.save(new VerificationToken(jobSeekerUserDao.getByEmail(jobSeekerUser.getEmail()).stream().findFirst().get().getId(),token.get("token")));

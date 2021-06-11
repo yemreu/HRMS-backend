@@ -2,15 +2,12 @@ package yunusemreuzun.hrms.entities.concretes;
 
 import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -23,27 +20,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "cvs")
-public class Cv {
+@Table(name = "languages")
+public class Language {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@OneToOne
-	@JoinColumn(name = "job_seeker_user_id")
-	private JobSeekerUser jobSeekerUser;
+	@Column(name = "name")
+	private String name;
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("cv")
-	private List<Education> educations;
+	@Column(name = "iso_639_1")
+	private String iso;
 	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("cv")
-	private List<Experience> experiences;
-	
-	@OneToMany(mappedBy = "cv", cascade = CascadeType.ALL)
-	@JsonIgnoreProperties("cv")
-	private List<CvLanguage> languages;
+	@OneToMany(mappedBy = "language")
+	@JsonIgnoreProperties("language")
+	private List<CvLanguage> cvs;
 }
+

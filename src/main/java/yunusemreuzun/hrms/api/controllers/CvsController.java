@@ -1,6 +1,8 @@
 package yunusemreuzun.hrms.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,13 +26,13 @@ public class CvsController {
 		this.cvService = cvService;
 	}
 	
-	@PostMapping("/add")
-	public Result add(@RequestBody Cv cv) {
-		return cvService.add(cv);
+	@PostMapping("/save")
+	public Result save(@RequestBody @DateTimeFormat(iso = ISO.DATE) Cv cv) {
+		return cvService.save(cv);
 	}
 	
-	@GetMapping("/get-cvs")
-	public DataResult<Cv> getSeekerCvs(@RequestParam int userId) {
-		return cvService.getSeekerCvs(userId);
+	@GetMapping("/get-cv")
+	public DataResult<Cv> getSeekerCv(@RequestParam int userId) {
+		return cvService.getSeekerCv(userId);
 	}
 }

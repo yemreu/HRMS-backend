@@ -21,28 +21,28 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "educations")
-public class Education {
+@Table(name = "experiences")
+public class Experience {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "institution_name")
-	private String institutionName;
+	@Column(name = "company_name")
+	private String companyName;
 	
-	@Column(name = "department")
-	private String department;
+	@Column(name = "title")
+	private String title;
 	
-	@Column(name = "starting_date")
-	private LocalDate startingDate;
+	@Column(name = "start_date")
+	private LocalDate startDate;
 	
-	@Column(name = "completion_date")
-	private LocalDate completionDate;
+	@Column(name = "end_date")
+	private LocalDate endDate;
 	
 	@ManyToOne
 	@JoinColumn(name = "cv_id")
-	@JsonIgnoreProperties("educations")
+	@JsonIgnoreProperties("experiences")
 	private Cv cv;
 }

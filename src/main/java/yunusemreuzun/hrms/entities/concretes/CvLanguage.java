@@ -1,7 +1,5 @@
 package yunusemreuzun.hrms.entities.concretes;
 
-import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,28 +19,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "educations")
-public class Education {
+@Table(name = "cvs_languages")
+public class CvLanguage {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "institution_name")
-	private String institutionName;
-	
-	@Column(name = "department")
-	private String department;
-	
-	@Column(name = "starting_date")
-	private LocalDate startingDate;
-	
-	@Column(name = "completion_date")
-	private LocalDate completionDate;
+	@Column(name = "level")
+	private Character level;
 	
 	@ManyToOne
 	@JoinColumn(name = "cv_id")
-	@JsonIgnoreProperties("educations")
+	@JsonIgnoreProperties("languages")
 	private Cv cv;
+	
+	@ManyToOne
+	@JoinColumn(name = "language_id")
+	@JsonIgnoreProperties("cvs")
+	private Language language;
 }
