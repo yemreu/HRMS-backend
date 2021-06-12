@@ -1,15 +1,16 @@
 package yunusemreuzun.hrms.entities.concretes;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,25 +20,21 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+@Table(name = "social_platforms")
+public class SocialPlatform {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "name")
+	private String name;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "url")
+	private String url;
 	
-	@Column(name = "active")
-	private boolean active;
-	
-	@OneToOne
-	@JoinColumn(name = "image_id")
-	private Image image;
+	@OneToMany(mappedBy = "socialPlatform")
+	@JsonIgnoreProperties("socialPlatform")
+	private List<SocialLink> socialLinks;
 }

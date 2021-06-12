@@ -9,4 +9,6 @@ public interface CvService {
 	Result save(Cv cv);
 	
 	DataResult<Cv> getSeekerCv(int id);
+	
+	Result selectCoverLetter(int userId, int coverId);
 }

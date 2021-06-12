@@ -35,4 +35,9 @@ public class CvsController {
 	public DataResult<Cv> getSeekerCv(@RequestParam int userId) {
 		return cvService.getSeekerCv(userId);
 	}
+	
+	@GetMapping("/select-cover-letter")
+	public Result selectCoverLetter(@RequestParam int userId,@RequestParam int coverId) {
+		return cvService.selectCoverLetter(userId, coverId);
+	}
 }

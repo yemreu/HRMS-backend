@@ -5,11 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,25 +19,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+@Table(name = "social_links")
+public class SocialLink {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "profile_name")
+	private String profileName;
 	
-	@Column(name = "password")
-	private String password;
+	@ManyToOne
+	@JoinColumn(name = "social_platform_id")
+	@JsonIgnoreProperties("socialLinks")
+	private SocialPlatform socialPlatform;
 	
-	@Column(name = "active")
-	private boolean active;
-	
-	@OneToOne
-	@JoinColumn(name = "image_id")
-	private Image image;
+	@ManyToOne
+	@JoinColumn(name = "cv_id")
+	@JsonIgnoreProperties("socialLinks")
+	private Cv cv;
 }

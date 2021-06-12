@@ -5,11 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,25 +20,26 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name="users")
-@Inheritance(strategy = InheritanceType.JOINED)
-public class User {
+@Table(name = "cover_letters")
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler","cv"})
+public class CoverLetter {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
 	private int id;
 	
-	@Column(name = "email")
-	private String email;
+	@Column(name = "title")
+	private String title;
 	
-	@Column(name = "password")
-	private String password;
+	@Column(name = "body")
+	private String body;
 	
-	@Column(name = "active")
-	private boolean active;
+	@ManyToOne
+	@JoinColumn(name = "job_seeker_user_id")
+	@JsonIgnoreProperties("coverLetters")
+	private JobSeekerUser jobSeekerUser;
 	
-	@OneToOne
-	@JoinColumn(name = "image_id")
-	private Image image;
+	@OneToOne(mappedBy = "coverLetter")
+	private Cv cv;
 }
