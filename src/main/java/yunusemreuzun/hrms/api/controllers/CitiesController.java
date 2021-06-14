@@ -13,7 +13,7 @@ import yunusemreuzun.hrms.entities.concretes.City;
 
 @RestController
 @RequestMapping("/api/cities")
-public class CitiesController {
+public class CitiesController extends Controller{
 
 	private CityService cityService;
 
