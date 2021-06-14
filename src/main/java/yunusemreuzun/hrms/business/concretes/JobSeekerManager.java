@@ -39,9 +39,9 @@ public class JobSeekerManager implements JobSeekerUserService{
 
 	@Override
 	public Result register(JobSeekerUser jobSeekerUser) {
-		if(!jobSeekerUserValidator.validateIfFieldsNotEmpty(jobSeekerUser)) {
+		/*if(!jobSeekerUserValidator.validateIfFieldsNotEmpty(jobSeekerUser)) {
 			return new ErrorResult("Tüm alanlar zorunludur.");
-		}
+		}*/
 		try {
 			if(!jobSeekerUserValidator.validateUserIdentity(jobSeekerUser)) {
 				return new ErrorResult("Kimlik bilgileri doğrulanamadı.");

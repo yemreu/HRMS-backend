@@ -1,5 +1,7 @@
 package yunusemreuzun.hrms.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -17,7 +19,7 @@ import yunusemreuzun.hrms.entities.concretes.Cv;
 
 @RestController
 @RequestMapping("/api/cvs/")
-public class CvsController {
+public class CvsController extends Controller{
 
 	private CvService cvService;
 
@@ -27,7 +29,7 @@ public class CvsController {
 	}
 	
 	@PostMapping("/save")
-	public Result save(@RequestBody @DateTimeFormat(iso = ISO.DATE) Cv cv) {
+	public Result save(@Valid @RequestBody @DateTimeFormat(iso = ISO.DATE) Cv cv) {
 		return cvService.save(cv);
 	}
 	

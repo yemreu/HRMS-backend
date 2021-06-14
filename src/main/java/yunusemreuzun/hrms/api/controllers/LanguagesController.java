@@ -2,6 +2,8 @@ package yunusemreuzun.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -17,7 +19,7 @@ import yunusemreuzun.hrms.entities.concretes.Language;
 
 @RestController
 @RequestMapping("/api/languages")
-public class LanguagesController {
+public class LanguagesController extends Controller{
 
 	private LanguageService languageService;
 
@@ -27,7 +29,7 @@ public class LanguagesController {
 	}
 	
 	@PostMapping("/add")
-	public Result add(@RequestBody Language language) {
+	public Result add(@Valid @RequestBody Language language) {
 		return languageService.add(language);
 	}
 	

@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,9 +32,13 @@ public class CoverLetter {
 	private int id;
 	
 	@Column(name = "title")
+	@NotBlank
+	@NotNull
 	private String title;
 	
 	@Column(name = "body")
+	@NotBlank
+	@NotNull
 	private String body;
 	
 	@ManyToOne

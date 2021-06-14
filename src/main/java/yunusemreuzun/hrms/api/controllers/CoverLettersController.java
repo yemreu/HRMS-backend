@@ -1,5 +1,7 @@
 package yunusemreuzun.hrms.api.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,7 @@ import yunusemreuzun.hrms.entities.concretes.CoverLetter;
 
 @RestController
 @RequestMapping("/api/cover-letters")
-public class CoverLettersController {
+public class CoverLettersController extends Controller{
 
 	private CoverLetterService coverLetterService;
 	
@@ -25,7 +27,7 @@ public class CoverLettersController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody CoverLetter coverLetter) {
+	public Result add(@Valid @RequestBody CoverLetter coverLetter) {
 		return coverLetterService.add(coverLetter);
 	}
 	

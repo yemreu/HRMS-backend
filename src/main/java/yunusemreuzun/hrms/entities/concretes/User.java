@@ -10,6 +10,9 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -31,9 +34,14 @@ public class User {
 	private int id;
 	
 	@Column(name = "email")
+	@NotBlank
+	@NotNull
+	@Email
 	private String email;
 	
 	@Column(name = "password")
+	@NotBlank
+	@NotNull
 	private String password;
 	
 	@Column(name = "active")

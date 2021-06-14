@@ -3,6 +3,8 @@ package yunusemreuzun.hrms.api.controllers;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
@@ -20,7 +22,7 @@ import yunusemreuzun.hrms.entities.concretes.Job;
 
 @RestController
 @RequestMapping("/api/jobs")
-public class JobsController {
+public class JobsController extends Controller{
 
 	private JobService jobService;
 
@@ -30,7 +32,7 @@ public class JobsController {
 	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody @DateTimeFormat(iso = ISO.DATE) Job job) {
+	public Result add(@Valid @RequestBody @DateTimeFormat(iso = ISO.DATE) Job job) {
 		return jobService.add(job);
 	}
 

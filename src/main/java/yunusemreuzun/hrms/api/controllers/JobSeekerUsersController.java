@@ -2,6 +2,8 @@ package yunusemreuzun.hrms.api.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,7 +18,7 @@ import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
 
 @RestController
 @RequestMapping("/api/users/job-seekers")
-public class JobSeekerUsersController {
+public class JobSeekerUsersController extends Controller{
 
 	private JobSeekerUserService jobSeekerUserService;
 
@@ -26,7 +28,7 @@ public class JobSeekerUsersController {
 	}
 	
 	@PostMapping("/register")
-	public Result register(@RequestBody JobSeekerUser jobSeekerUser) {
+	public Result register(@Valid @RequestBody JobSeekerUser jobSeekerUser) {
 		return jobSeekerUserService.register(jobSeekerUser);
 	}
 	

@@ -15,7 +15,7 @@ import yunusemreuzun.hrms.core.utilities.results.DataResult;
 
 @RestController
 @RequestMapping("/api/images")
-public class ImagesController {
+public class ImagesController extends Controller{
 
 	private ImageService imageService;
 

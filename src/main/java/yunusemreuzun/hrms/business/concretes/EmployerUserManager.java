@@ -39,9 +39,9 @@ public class EmployerUserManager implements EmployerUserService{
 
 	@Override
 	public Result register(EmployerUser employerUser) {
-		if(!employerUserValidator.validateIfFieldsNotEmpty(employerUser)) {
+		/*if(!employerUserValidator.validateIfFieldsNotEmpty(employerUser)) {
 			return new ErrorResult("Tüm alanlar zorunludur.");
-		}
+		}*/
 		if(!employerUserValidator.validateIfCompanyEmail(employerUser)) {
 			return new ErrorResult("Email şirketinize ait değil.");
 		}
