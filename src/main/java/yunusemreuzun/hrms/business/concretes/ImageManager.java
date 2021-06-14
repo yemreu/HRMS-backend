@@ -1,8 +1,7 @@
 package yunusemreuzun.hrms.business.concretes;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,30 +14,37 @@ import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.ErrorDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.ImageDao;
+import yunusemreuzun.hrms.dataAccess.abstracts.UserDao;
+import yunusemreuzun.hrms.entities.concretes.Image;
+import yunusemreuzun.hrms.entities.concretes.User;
 
 @Service
 public class ImageManager implements ImageService{
 
 	private ImageDao imageDao;
+	private UserDao userDao;
 	private ImageServiceAdapter imageServiceAdapter;
 	
 	@Autowired
-	public ImageManager(ImageDao imageDao, ImageServiceAdapter imageServiceAdapter) {
+	public ImageManager(ImageDao imageDao, ImageServiceAdapter imageServiceAdapter,UserDao userDao) {
 		this.imageDao = imageDao;
 		this.imageServiceAdapter = imageServiceAdapter;
+		this.userDao = userDao;
 	}
 
 	@Override
-	public DataResult<Map> upload(MultipartFile multiPartFile) {
+	public DataResult<Map<String, String>> upload(MultipartFile multiPartFile, int userId, String alt) {
 		try {
-			File file = new File(multiPartFile.getOriginalFilename());
-			FileOutputStream stream = new FileOutputStream(file);
-			stream.write(multiPartFile.getBytes());
-			stream.close();
-			Map result = imageServiceAdapter.upload(file);
-			return new SuccessDataResult<Map>(result, "Fotoğraf yüklendi.");
+			String imageUrl = imageServiceAdapter.upload(multiPartFile).get("url").toString();
+			User user = userDao.getById(userId);
+			Image image = new Image(0, imageUrl, alt, user);
+			imageDao.save(image);
+			Map<String,String> results = new HashMap<>();
+			results.put("image_url", imageUrl);
+			results.put("alt", image.getAlt());
+			return new SuccessDataResult<Map<String,String>>(results, "Fotoğraf yüklendi.");
 		}catch (IOException e) {
-			return new ErrorDataResult<Map>(e.getMessage());
+			return new ErrorDataResult<>(e.getMessage());
 		}
 	}
 
