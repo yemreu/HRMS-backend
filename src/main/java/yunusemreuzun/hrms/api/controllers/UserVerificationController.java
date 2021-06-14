@@ -3,13 +3,13 @@ package yunusemreuzun.hrms.api.controllers;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import yunusemreuzun.hrms.business.abstracts.UserVerificationService;
-import yunusemreuzun.hrms.core.utilities.results.Result;
 
 @RestController
 @RequestMapping("/api/users")
@@ -23,7 +23,7 @@ public class UserVerificationController extends Controller{
 	}
 	
 	@PostMapping("/verify")
-	public Result verify(@Valid @RequestBody String token) {
-		return userVerificationService.verify(token);
+	public ResponseEntity<?> verify(@Valid @RequestBody String token) {
+		return ResponseEntity.ok(userVerificationService.verify(token));
 	}
 }

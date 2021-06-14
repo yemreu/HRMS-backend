@@ -8,6 +8,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.format.annotation.DateTimeFormat.ISO;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,8 +33,8 @@ public class JobsController extends Controller{
 	}
 
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody @DateTimeFormat(iso = ISO.DATE) Job job) {
-		return jobService.add(job);
+	public ResponseEntity<?> add(@Valid @RequestBody @DateTimeFormat(iso = ISO.DATE) Job job) {
+		return ResponseEntity.ok(jobService.add(job));
 	}
 
 	@GetMapping("/get-active-jobs")

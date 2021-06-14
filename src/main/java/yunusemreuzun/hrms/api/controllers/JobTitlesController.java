@@ -5,6 +5,7 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import yunusemreuzun.hrms.business.abstracts.JobTitleService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
-import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.JobTitle;
 
 @RestController
@@ -33,7 +33,7 @@ public class JobTitlesController extends Controller{
 	}
 	
 	@PostMapping("/add")
-	public Result add(@Valid @RequestBody JobTitle jobTitle) {
-		return jobTitleService.add(jobTitle);
+	public ResponseEntity<?> add(@Valid @RequestBody JobTitle jobTitle) {
+		return ResponseEntity.ok(jobTitleService.add(jobTitle));
 	}
 }
