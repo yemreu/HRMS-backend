@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.JobTitleService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.entities.concretes.JobTitle;
+import yunusemreuzun.hrms.entities.dtos.JobTitleDto;
 
 @RestController
 @RequestMapping("/api/job-titles")
@@ -28,8 +29,8 @@ public class JobTitlesController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<JobTitle>> getAll(){
-		return jobTitleService.getAll();
+	public DataResult<List<JobTitleDto>> getAll(){
+		return jobTitleService.getJobTitleData();
 	}
 	
 	@PostMapping("/add")

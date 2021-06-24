@@ -20,6 +20,7 @@ import yunusemreuzun.hrms.dataAccess.abstracts.EmployerUserDao;
 import yunusemreuzun.hrms.dataAccess.abstracts.VerificationTokenDao;
 import yunusemreuzun.hrms.entities.concretes.EmployerUser;
 import yunusemreuzun.hrms.entities.concretes.VerificationToken;
+import yunusemreuzun.hrms.entities.dtos.EmployerUserDto;
 
 @Service
 public class EmployerUserManager implements EmployerUserService{
@@ -66,5 +67,10 @@ public class EmployerUserManager implements EmployerUserService{
 	@Override
 	public DataResult<List<EmployerUser>> getAll() {
 		return new SuccessDataResult<List<EmployerUser>>(employerUserDao.findAll(), "İş verenler listelendi.");
+	}
+
+	@Override
+	public DataResult<List<EmployerUserDto>> getEmployerUserData() {
+		return new SuccessDataResult<List<EmployerUserDto>>(employerUserDao.getEmployerUserData(), "İş arayanlar listelendi.");
 	}
 }

@@ -13,6 +13,7 @@ import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.JobDao;
 import yunusemreuzun.hrms.entities.concretes.Job;
+import yunusemreuzun.hrms.entities.dtos.JobDto;
 
 @Service
 public class JobManager implements JobService {
@@ -53,6 +54,11 @@ public class JobManager implements JobService {
 		job.setActive(false);
 		jobDao.save(job);
 		return new SuccessResult("İş ilanı kaldırıldı.");
+	}
+	
+	@Override
+	public DataResult<List<JobDto>> getJobData() {
+		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobData(), "İş arayanlar listelendi.");
 	}
 
 }

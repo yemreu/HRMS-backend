@@ -12,6 +12,7 @@ import yunusemreuzun.hrms.dataAccess.abstracts.CoverLetterDao;
 import yunusemreuzun.hrms.dataAccess.abstracts.CvDao;
 import yunusemreuzun.hrms.entities.concretes.CoverLetter;
 import yunusemreuzun.hrms.entities.concretes.Cv;
+import yunusemreuzun.hrms.entities.dtos.CvDto;
 
 @Service
 public class CvManager implements CvService{
@@ -48,5 +49,12 @@ public class CvManager implements CvService{
 		cvDao.save(cv);
 		return new SuccessResult("Ön yazı seçildi");
 	}
+
+	
+	  @Override 
+	  public DataResult<CvDto> getSeekerCvData(int userId) { 
+		  return new SuccessDataResult<CvDto>(cvDao.getCvData(userId),"İş arayanlar listelendi."); 
+	  }
+	 
 
 }

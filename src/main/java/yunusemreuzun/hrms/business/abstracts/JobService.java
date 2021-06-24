@@ -6,6 +6,7 @@ import java.util.List;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.Job;
+import yunusemreuzun.hrms.entities.dtos.JobDto;
 
 public interface JobService {
 
@@ -18,4 +19,6 @@ public interface JobService {
 	DataResult<List<Job>> getActiveJobsWithLastApplicationDate(LocalDate date);
 	
 	Result deactivateJob(int id);
+	
+	DataResult<List<JobDto>> getJobData();
 }

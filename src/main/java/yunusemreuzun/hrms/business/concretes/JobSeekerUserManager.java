@@ -20,9 +20,10 @@ import yunusemreuzun.hrms.dataAccess.abstracts.VerificationTokenDao;
 import yunusemreuzun.hrms.entities.concretes.Cv;
 import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
 import yunusemreuzun.hrms.entities.concretes.VerificationToken;
+import yunusemreuzun.hrms.entities.dtos.JobSeekerUserDto;
 
 @Service
-public class JobSeekerManager implements JobSeekerUserService{
+public class JobSeekerUserManager implements JobSeekerUserService{
 
 	private JobSeekerUserDao jobSeekerUserDao;
 	private VerificationTokenDao verificationTokenDao;
@@ -30,7 +31,7 @@ public class JobSeekerManager implements JobSeekerUserService{
 	private VerificationEmailSender verificationEmailSender;
 	
 	@Autowired
-	public JobSeekerManager(JobSeekerUserDao jobSeekerUserDao, JobSeekerUserValidator jobSeekerUserValidator, VerificationTokenDao verificationTokenDao,VerificationEmailSender verificationEmailSender) {
+	public JobSeekerUserManager(JobSeekerUserDao jobSeekerUserDao, JobSeekerUserValidator jobSeekerUserValidator, VerificationTokenDao verificationTokenDao,VerificationEmailSender verificationEmailSender) {
 		this.jobSeekerUserDao = jobSeekerUserDao;
 		this.jobSeekerUserValidator = jobSeekerUserValidator;
 		this.verificationTokenDao = verificationTokenDao;
@@ -67,5 +68,10 @@ public class JobSeekerManager implements JobSeekerUserService{
 	@Override
 	public DataResult<List<JobSeekerUser>> getAll() {
 		return new SuccessDataResult<List<JobSeekerUser>>(jobSeekerUserDao.findAll(), "İş arayanlar listelendi.");
+	}
+
+	@Override
+	public DataResult<List<JobSeekerUserDto>> getJobSeekerUserData() {
+		return new SuccessDataResult<List<JobSeekerUserDto>>(jobSeekerUserDao.getJobSeekerUserData(), "İş arayanlar listelendi.");
 	}
 }

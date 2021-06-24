@@ -20,6 +20,7 @@ import yunusemreuzun.hrms.business.abstracts.JobService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.Job;
+import yunusemreuzun.hrms.entities.dtos.JobDto;
 
 @RestController
 @RequestMapping("/api/jobs")
@@ -38,8 +39,8 @@ public class JobsController extends Controller{
 	}
 
 	@GetMapping("/get-active-jobs")
-	public DataResult<List<Job>> getActiveJobs() {
-		return jobService.getActiveJobs();
+	public DataResult<List<JobDto>> getActiveJobs() {
+		return jobService.getJobData();
 	}
 
 	@GetMapping("/get-employer-active-jobs")
@@ -53,7 +54,7 @@ public class JobsController extends Controller{
 	}
 	
 	@PostMapping("/deactivate-job")
-	public Result deactivateJob(@RequestParam int id) {
+	public Result deactivateJob(@RequestBody int id) {
 		return jobService.deactivateJob(id);
 	}
 

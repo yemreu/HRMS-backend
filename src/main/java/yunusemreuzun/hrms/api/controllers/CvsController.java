@@ -17,6 +17,7 @@ import yunusemreuzun.hrms.business.abstracts.CvService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.Cv;
+import yunusemreuzun.hrms.entities.dtos.CvDto;
 
 @RestController
 @RequestMapping("/api/cvs/")
@@ -35,8 +36,8 @@ public class CvsController extends Controller{
 	}
 	
 	@GetMapping("/get-cv")
-	public DataResult<Cv> getSeekerCv(@RequestParam int userId) {
-		return cvService.getSeekerCv(userId);
+	public DataResult<CvDto> getSeekerCv(@RequestParam int userId) {
+		return cvService.getSeekerCvData(userId);
 	}
 	
 	@GetMapping("/select-cover-letter")

@@ -13,6 +13,7 @@ import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.JobTitleDao;
 import yunusemreuzun.hrms.entities.concretes.JobTitle;
+import yunusemreuzun.hrms.entities.dtos.JobTitleDto;
 
 @Service
 public class JobTitleManager implements JobTitleService{
@@ -36,6 +37,11 @@ public class JobTitleManager implements JobTitleService{
 		}
 		jobTitleDao.save(jobTitle);
 		return new SuccessResult("Pozisyon eklendi.");
+	}
+	
+	@Override
+	public DataResult<List<JobTitleDto>> getJobTitleData() {
+		return new SuccessDataResult<List<JobTitleDto>>(jobTitleDao.getJobtitleData(), "İş arayanlar listelendi.");
 	}
 
 }

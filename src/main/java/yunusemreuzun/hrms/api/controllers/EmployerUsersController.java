@@ -14,6 +14,7 @@ import yunusemreuzun.hrms.business.abstracts.EmployerUserService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.entities.concretes.EmployerUser;
+import yunusemreuzun.hrms.entities.dtos.EmployerUserDto;
 
 @RestController
 @RequestMapping("/api/users/employers")
@@ -37,7 +38,7 @@ public class EmployerUsersController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<EmployerUser>> getAll(){
-		return employerUserService.getAll();
+	public DataResult<List<EmployerUserDto>> getAll(){
+		return employerUserService.getEmployerUserData();
 	}
 }

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.JobSeekerUserService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.entities.concretes.JobSeekerUser;
+import yunusemreuzun.hrms.entities.dtos.JobSeekerUserDto;
 
 @RestController
 @RequestMapping("/api/users/job-seekers")
@@ -33,7 +34,7 @@ public class JobSeekerUsersController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<JobSeekerUser>> getAll(){
-		return jobSeekerUserService.getAll();
+	public DataResult<List<JobSeekerUserDto>> getAll(){
+		return jobSeekerUserService.getJobSeekerUserData();
 	}
 }
