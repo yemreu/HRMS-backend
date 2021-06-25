@@ -1,5 +1,7 @@
 package yunusemreuzun.hrms.api.controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.CoverLetterService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.entities.concretes.CoverLetter;
+import yunusemreuzun.hrms.entities.dtos.CoverLetterDto;
 
 @RestController
 @RequestMapping("/api/cover-letters")
@@ -31,8 +34,8 @@ public class CoverLettersController extends Controller{
 		return ResponseEntity.ok(coverLetterService.add(coverLetter));
 	}
 	
-	@GetMapping("/get-cover-letter")
-	public DataResult<CoverLetter> getById(@RequestParam int coverLetterId){
-		return coverLetterService.getById(coverLetterId);
+	@GetMapping("/get-job-seeker-cover-letters")
+	public DataResult<List<CoverLetterDto>> getCoverLetterData(@RequestParam int userId){
+		return coverLetterService.getCoverLetterData(userId);
 	}
 }

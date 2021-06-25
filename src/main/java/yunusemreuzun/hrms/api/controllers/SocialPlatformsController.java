@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.SocialPlatformService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.entities.concretes.SocialPlatform;
+import yunusemreuzun.hrms.entities.dtos.SocialPlatformDto;
 
 @RestController
 @RequestMapping("/api/social-platforms")
@@ -28,7 +29,7 @@ public class SocialPlatformsController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<SocialPlatform>> getAll(){
+	public DataResult<List<SocialPlatformDto>> getAll(){
 		return socialPlatformService.getAll();
 	}
 	

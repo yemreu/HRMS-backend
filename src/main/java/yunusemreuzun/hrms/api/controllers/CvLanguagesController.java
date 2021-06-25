@@ -10,12 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import yunusemreuzun.hrms.business.abstracts.CvLanguageService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
-import yunusemreuzun.hrms.entities.concretes.CvLanguage;
 import yunusemreuzun.hrms.entities.dtos.CvLanguageDto;
 
 @RestController
 @RequestMapping("/api/cv-languages")
-public class CvLanguagesController {
+public class CvLanguagesController extends Controller{
 
 	private CvLanguageService cvLanguageService;
 

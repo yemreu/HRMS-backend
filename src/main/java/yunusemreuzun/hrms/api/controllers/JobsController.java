@@ -40,17 +40,17 @@ public class JobsController extends Controller{
 
 	@GetMapping("/get-active-jobs")
 	public DataResult<List<JobDto>> getActiveJobs() {
-		return jobService.getJobData();
+		return jobService.getActiveJobData();
 	}
 
 	@GetMapping("/get-employer-active-jobs")
-	public DataResult<List<Job>> getEmployerActiveJobs(@RequestParam int userId) {
-		return jobService.getEmployerActiveJobs(userId);
+	public DataResult<List<JobDto>> getEmployerActiveJobs(@RequestParam int userId) {
+		return jobService.getEmployerActiveJobData(userId);
 	}
 
 	@GetMapping("/get-active-jobs-with-last-application-date")
-	public DataResult<List<Job>> getActiveJobsWithLastApplicationDate(@RequestParam @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
-		return jobService.getActiveJobsWithLastApplicationDate(date);
+	public DataResult<List<JobDto>> getActiveJobsWithLastApplicationDate(@RequestParam @DateTimeFormat(iso = ISO.DATE) LocalDate date) {
+		return jobService.getActiveJobByLastApplicationDateData(date);
 	}
 	
 	@PostMapping("/deactivate-job")

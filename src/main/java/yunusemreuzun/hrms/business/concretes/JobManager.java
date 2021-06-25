@@ -45,7 +45,7 @@ public class JobManager implements JobService {
 	@Override
 	public DataResult<List<Job>> getActiveJobsWithLastApplicationDate(LocalDate date) {
 		return new SuccessDataResult<List<Job>>(jobDao.getByLastApplicationDateAndActiveTrue(date),
-				"Tüm aktif ilanları tarihe göre sıralandı.");
+				"Tüm aktif ilanları son başvuru tarihine göre sıralandı.");
 	}
 
 	@Override
@@ -57,8 +57,17 @@ public class JobManager implements JobService {
 	}
 	
 	@Override
-	public DataResult<List<JobDto>> getJobData() {
-		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobData(), "İş arayanlar listelendi.");
+	public DataResult<List<JobDto>> getActiveJobData() {
+		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobData(), "Tüm aktif iş ilanları listelendi.");
+	}
+	
+	@Override
+	public DataResult<List<JobDto>> getEmployerActiveJobData(int userId) {
+		return new SuccessDataResult<List<JobDto>>(jobDao.getEmployerActiveJobData(userId), "İşverene ait tüm aktif iş ilanları listelendi.");
 	}
 
+	@Override 
+	public DataResult<List<JobDto>> getActiveJobByLastApplicationDateData(LocalDate date){
+		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobByLastApplicationDateData(date), "Tüm aktif ilanları son başvuru tarihine göre sıralandı.");
+	}
 }

@@ -9,7 +9,7 @@ import yunusemreuzun.hrms.business.abstracts.CityService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.CityDao;
-import yunusemreuzun.hrms.entities.concretes.City;
+import yunusemreuzun.hrms.entities.dtos.CityDto;
 
 @Service
 public class CityManager implements CityService{
@@ -22,8 +22,8 @@ public class CityManager implements CityService{
 	}
 
 	@Override
-	public DataResult<List<City>> getAll() {
-		return new SuccessDataResult<List<City>>(cityDao.findAll(), "Tüm şehirler listelendi");
+	public DataResult<List<CityDto>> getAll() {
+		return new SuccessDataResult<List<CityDto>>(cityDao.getCityData(), "Tüm şehirler listelendi");
 	}
 
 }

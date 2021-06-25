@@ -20,5 +20,10 @@ public interface JobService {
 	
 	Result deactivateJob(int id);
 	
-	DataResult<List<JobDto>> getJobData();
+	DataResult<List<JobDto>> getActiveJobData();
+	
+	DataResult<List<JobDto>> getEmployerActiveJobData(int userId);
+	
+	DataResult<List<JobDto>> getActiveJobByLastApplicationDateData(LocalDate date);
+	
 }

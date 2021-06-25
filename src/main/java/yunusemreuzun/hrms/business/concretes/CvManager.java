@@ -53,7 +53,7 @@ public class CvManager implements CvService{
 	
 	  @Override 
 	  public DataResult<CvDto> getSeekerCvData(int userId) { 
-		  return new SuccessDataResult<CvDto>(cvDao.getCvData(userId),"İş arayanlar listelendi."); 
+		  return new SuccessDataResult<CvDto>(cvDao.getCvData(userId),"İş arayanın cv'si listelendi."); 
 	  }
 	 
 

@@ -41,7 +41,7 @@ public class JobTitleManager implements JobTitleService{
 	
 	@Override
 	public DataResult<List<JobTitleDto>> getJobTitleData() {
-		return new SuccessDataResult<List<JobTitleDto>>(jobTitleDao.getJobtitleData(), "İş arayanlar listelendi.");
+		return new SuccessDataResult<List<JobTitleDto>>(jobTitleDao.getJobtitleData(), "Pozisyonlar listelendi.");
 	}
 
 }

@@ -9,7 +9,6 @@ import yunusemreuzun.hrms.business.abstracts.CvLanguageService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.CvLanguageDao;
-import yunusemreuzun.hrms.entities.concretes.CvLanguage;
 import yunusemreuzun.hrms.entities.dtos.CvLanguageDto;
 
 @Service

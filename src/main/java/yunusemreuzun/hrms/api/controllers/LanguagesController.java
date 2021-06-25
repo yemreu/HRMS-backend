@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.LanguageService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.entities.concretes.Language;
+import yunusemreuzun.hrms.entities.dtos.LanguageDto;
 
 @RestController
 @RequestMapping("/api/languages")
@@ -33,7 +34,7 @@ public class LanguagesController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<Language>> getAll(){
+	public DataResult<List<LanguageDto>> getAll(){
 		return languageService.getAll();
 	}
 }

@@ -12,6 +12,7 @@ import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.SocialPlatformDao;
 import yunusemreuzun.hrms.entities.concretes.SocialPlatform;
+import yunusemreuzun.hrms.entities.dtos.SocialPlatformDto;
 
 @Service
 public class SocialPlatformManager implements SocialPlatformService{
@@ -24,8 +25,8 @@ public class SocialPlatformManager implements SocialPlatformService{
 	}
 
 	@Override
-	public DataResult<List<SocialPlatform>> getAll() {
-		return new SuccessDataResult<List<SocialPlatform>>(socialPlatformDao.findAll(), "Tüm sosyal platformlar listelendi.");
+	public DataResult<List<SocialPlatformDto>> getAll() {
+		return new SuccessDataResult<List<SocialPlatformDto>>(socialPlatformDao.getSocialPlatformData(), "Tüm sosyal platformlar listelendi.");
 	}
 
 	@Override

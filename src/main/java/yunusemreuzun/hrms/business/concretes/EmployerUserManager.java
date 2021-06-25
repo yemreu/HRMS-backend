@@ -66,11 +66,11 @@ public class EmployerUserManager implements EmployerUserService{
 	
 	@Override
 	public DataResult<List<EmployerUser>> getAll() {
-		return new SuccessDataResult<List<EmployerUser>>(employerUserDao.findAll(), "İş verenler listelendi.");
+		return new SuccessDataResult<List<EmployerUser>>(employerUserDao.findAll(), "İşverenler listelendi.");
 	}
 
 	@Override
 	public DataResult<List<EmployerUserDto>> getEmployerUserData() {
-		return new SuccessDataResult<List<EmployerUserDto>>(employerUserDao.getEmployerUserData(), "İş arayanlar listelendi.");
+		return new SuccessDataResult<List<EmployerUserDto>>(employerUserDao.getEmployerUserData(), "İşverenler listelendi.");
 	}
 }

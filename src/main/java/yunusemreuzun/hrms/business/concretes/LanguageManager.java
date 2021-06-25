@@ -12,6 +12,7 @@ import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
 import yunusemreuzun.hrms.dataAccess.abstracts.LanguageDao;
 import yunusemreuzun.hrms.entities.concretes.Language;
+import yunusemreuzun.hrms.entities.dtos.LanguageDto;
 
 @Service
 public class LanguageManager implements LanguageService{
@@ -30,8 +31,8 @@ public class LanguageManager implements LanguageService{
 	}
 
 	@Override
-	public DataResult<List<Language>> getAll() {
-		return new SuccessDataResult<List<Language>>(languageDao.findAll(),"Tüm diller listelendi.");
+	public DataResult<List<LanguageDto>> getAll() {
+		return new SuccessDataResult<List<LanguageDto>>(languageDao.getLanguageData(),"Tüm diller listelendi.");
 	}
 	
 	

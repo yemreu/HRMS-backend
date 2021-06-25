@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import yunusemreuzun.hrms.business.abstracts.CityService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
-import yunusemreuzun.hrms.entities.concretes.City;
+import yunusemreuzun.hrms.entities.dtos.CityDto;
 
 @RestController
 @RequestMapping("/api/cities")
@@ -23,7 +23,7 @@ public class CitiesController extends Controller{
 	}
 	
 	@GetMapping("/get-all")
-	public DataResult<List<City>> getAll(){
+	public DataResult<List<CityDto>> getAll(){
 		return cityService.getAll();
 	}
 }
