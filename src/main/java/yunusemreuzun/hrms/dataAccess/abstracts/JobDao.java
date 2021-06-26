@@ -19,12 +19,15 @@ public interface JobDao extends JpaRepository<Job, Integer>{
 	
 	Job getById(int id);
 	
-	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true")
+	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate,j.remote,j.fullTime) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true")
 	List<JobDto> getActiveJobData();
 	
-	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true AND e.id = :userId")
+	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate,j.remote,j.fullTime) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = false")
+	List<JobDto> getInActiveJobData();
+	
+	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate,j.remote,j.fullTime) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true AND e.id = :userId")
 	List<JobDto> getEmployerActiveJobData(int userId);
 	
-	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true AND j.lastApplicationDate = :date")
+	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.JobDto(j.id,e.companyName,jt.title,j.description,j.minSalary,j.maxSalary,j.vacancy,j.postingDate,j.lastApplicationDate,j.remote,j.fullTime) FROM Job j INNER JOIN j.employerUser e INNER JOIN j.jobTitle jt WHERE j.active = true AND j.lastApplicationDate = :date")
 	List<JobDto> getActiveJobByLastApplicationDateData(LocalDate date);
 }

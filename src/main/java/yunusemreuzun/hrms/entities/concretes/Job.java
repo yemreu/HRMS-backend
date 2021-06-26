@@ -54,7 +54,13 @@ public class Job {
 	private LocalDate lastApplicationDate;
 	
 	@Column(name = "active")
-	private boolean active = true;
+	private boolean active = false;
+	
+	@Column(name = "remote")
+	private boolean remote = false;
+	
+	@Column(name = "full_time")
+	private boolean fullTime = false;
 	
 	@ManyToOne
 	@JoinColumn(name = "employer_user_id")

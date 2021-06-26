@@ -47,6 +47,14 @@ public class JobManager implements JobService {
 		return new SuccessDataResult<List<Job>>(jobDao.getByLastApplicationDateAndActiveTrue(date),
 				"Tüm aktif ilanları son başvuru tarihine göre sıralandı.");
 	}
+	
+	@Override
+	public Result activateJob(int id) {
+		Job job = jobDao.getById(id);
+		job.setActive(true);
+		jobDao.save(job);
+		return new SuccessResult("İş ilanı aktifleştirildi.");
+	}
 
 	@Override
 	public Result deactivateJob(int id) {
@@ -59,6 +67,11 @@ public class JobManager implements JobService {
 	@Override
 	public DataResult<List<JobDto>> getActiveJobData() {
 		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobData(), "Tüm aktif iş ilanları listelendi.");
+	}
+	
+	@Override
+	public DataResult<List<JobDto>> getInActiveJobData() {
+		return new SuccessDataResult<List<JobDto>>(jobDao.getInActiveJobData(), "Tüm inaktif iş ilanları listelendi.");
 	}
 	
 	@Override

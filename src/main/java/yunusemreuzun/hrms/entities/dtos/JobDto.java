@@ -20,4 +20,6 @@ public class JobDto {
 	private int vacancy;
 	private LocalDate postingDate;
 	private LocalDate lastApplicationDate;
+	private boolean remote;
+	private boolean fullTime;
 }
