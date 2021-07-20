@@ -37,7 +37,14 @@ public class ImageManager implements ImageService{
 		try {
 			String imageUrl = imageServiceAdapter.upload(multiPartFile).get("url").toString();
 			User user = userDao.getById(userId);
-			Image image = new Image(0, imageUrl, alt, user);
+			Image image;
+			if(imageDao.existsImageByUser_Id(userId)) {
+				image = imageDao.findByUser_Id(userId);
+				image.setAlt(alt);
+				image.setImageUrl(imageUrl);
+			}else {
+				image = new Image(0, imageUrl, alt, user);
+			}
 			imageDao.save(image);
 			Map<String,String> results = new HashMap<>();
 			results.put("image_url", imageUrl);

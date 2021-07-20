@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 
 import yunusemreuzun.hrms.core.utilities.results.ErrorDataResult;
 
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class Controller{
 
 	@ExceptionHandler(MethodArgumentNotValidException.class)

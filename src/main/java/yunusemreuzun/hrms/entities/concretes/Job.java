@@ -41,7 +41,6 @@ public class Job {
 	private String maxSalary;
 	
 	@Column(name = "vacancy")
-	@NotBlank
 	@NotNull
 	private int vacancy;
 	
@@ -49,7 +48,6 @@ public class Job {
 	private LocalDate postingDate = LocalDate.now();
 	
 	@Column(name = "last_application_date")
-	@NotBlank
 	@NotNull
 	private LocalDate lastApplicationDate;
 	

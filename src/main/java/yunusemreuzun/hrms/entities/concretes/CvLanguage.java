@@ -32,7 +32,7 @@ public class CvLanguage {
 	@Column(name = "level")
 	@NotBlank
 	@NotNull
-	private Character level;
+	private int level;
 	
 	@ManyToOne
 	@JoinColumn(name = "cv_id")

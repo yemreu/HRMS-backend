@@ -25,7 +25,7 @@ public class ImagesController extends Controller{
 	}
 	
 	@PostMapping("/upload")
-	public DataResult<Map<String, String>> upload(@RequestBody MultipartFile multiPartFile, @RequestParam int userId,@RequestParam(required = false) String alt){
-		return imageService.upload(multiPartFile,userId,alt);
+	public DataResult<Map<String, String>> upload(@RequestBody MultipartFile image, @RequestParam int userId,@RequestParam(required = false) String alt){
+		return imageService.upload(image,userId,alt);
 	}
 }

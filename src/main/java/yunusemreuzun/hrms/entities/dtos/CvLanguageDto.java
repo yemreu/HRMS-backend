@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 public class CvLanguageDto {
 
 	private String name;
-	private Character level;
+	private int level;
 }

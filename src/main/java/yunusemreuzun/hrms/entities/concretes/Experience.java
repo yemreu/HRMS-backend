@@ -1,7 +1,6 @@
 package yunusemreuzun.hrms.entities.concretes;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -30,12 +31,17 @@ public class Experience {
 	private int id;
 	
 	@Column(name = "company_name")
+	@NotBlank
+	@NotNull
 	private String companyName;
 	
 	@Column(name = "title")
+	@NotBlank
+	@NotNull
 	private String title;
 	
 	@Column(name = "start_date")
+	@NotNull
 	private LocalDate startDate;
 	
 	@Column(name = "end_date")

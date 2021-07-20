@@ -1,7 +1,6 @@
 package yunusemreuzun.hrms.entities.concretes;
 
 import java.time.LocalDate;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -40,7 +39,6 @@ public class Education {
 	private String department;
 	
 	@Column(name = "starting_date")
-	@NotBlank
 	@NotNull
 	private LocalDate startingDate;
 	
