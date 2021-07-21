@@ -6,6 +6,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,8 +33,8 @@ public class EmployerUsersController extends Controller{
 		return ResponseEntity.ok(employerUserService.register(employerUser));
 	}
 	
-	@PostMapping("/verify")
-	public Result verify(@RequestBody int companyId) {
+	@PutMapping("/verify")
+	public Result verify(Integer companyId) {
 		return employerUserService.verify(companyId);
 	}
 	

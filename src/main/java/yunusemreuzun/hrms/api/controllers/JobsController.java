@@ -11,6 +11,7 @@ import org.springframework.format.annotation.DateTimeFormat.ISO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -58,13 +59,13 @@ public class JobsController extends Controller{
 		return jobService.getActiveJobByLastApplicationDateData(date);
 	}
 	
-	@PostMapping("/activate-job")
-	public Result activateJob(@RequestBody int id) {
+	@PutMapping("/activate-job")
+	public Result activateJob(Integer id) {
 		return jobService.activateJob(id);
 	}
 	
-	@PostMapping("/deactivate-job")
-	public Result deactivateJob(@RequestBody int id) {
+	@PutMapping("/deactivate-job")
+	public Result deactivateJob(Integer id) {
 		return jobService.deactivateJob(id);
 	}
 
