@@ -5,6 +5,7 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
@@ -47,4 +48,9 @@ public class EmployerUser extends User{
 	
 	@OneToMany(mappedBy = "employerUser")
 	private List<Job> jobs;
+	
+	@OneToOne(mappedBy = "employerUser")
+	@JsonIgnoreProperties("employerUser")
+	private EmployerUserProfileUpdate employerUserProfileUpdate;
+	
 }

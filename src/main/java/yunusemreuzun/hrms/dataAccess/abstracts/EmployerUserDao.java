@@ -15,5 +15,8 @@ public interface EmployerUserDao extends JpaRepository<EmployerUser, Integer>{
 	List<IdOnly> getByEmail(String email);
 	
 	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.EmployerUserDto(e.id,e.companyName,e.email,e.phoneNumber,e.website,e.verifiedCompany,e.active) FROM  EmployerUser e")
-	List<EmployerUserDto> getEmployerUserData();
+	List<EmployerUserDto> getAllEmployerUserData();
+	
+	@Query("SELECT new yunusemreuzun.hrms.entities.dtos.EmployerUserDto(e.id,e.companyName,e.email,e.phoneNumber,e.website,e.verifiedCompany,e.active) FROM  EmployerUser e WHERE e.id = :userId")
+	EmployerUserDto getEmployerUserData(int userId);
 }
