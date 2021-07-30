@@ -4,25 +4,34 @@ import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import yunusemreuzun.hrms.business.abstracts.JobService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
+import yunusemreuzun.hrms.core.utilities.results.ErrorDataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
 import yunusemreuzun.hrms.core.utilities.results.SuccessDataResult;
 import yunusemreuzun.hrms.core.utilities.results.SuccessResult;
+import yunusemreuzun.hrms.dataAccess.abstracts.FavoriteJobDao;
 import yunusemreuzun.hrms.dataAccess.abstracts.JobDao;
+import yunusemreuzun.hrms.entities.concretes.FavoriteJob;
 import yunusemreuzun.hrms.entities.concretes.Job;
 import yunusemreuzun.hrms.entities.dtos.JobDto;
+import yunusemreuzun.hrms.entities.dtos.JobFilterDto;
+import yunusemreuzun.hrms.entities.dtos.PaginatedJobDto;
 
 @Service
 public class JobManager implements JobService {
 
 	private JobDao jobDao;
+	private FavoriteJobDao favoriteJobDao;
 
 	@Autowired
-	public JobManager(JobDao jobDao) {
+	public JobManager(JobDao jobDao,FavoriteJobDao favoriteJobDao) {
 		this.jobDao = jobDao;
+		this.favoriteJobDao = favoriteJobDao;
 	}
 
 	@Override
@@ -71,7 +80,7 @@ public class JobManager implements JobService {
 	
 	@Override
 	public DataResult<List<JobDto>> getInActiveJobData() {
-		return new SuccessDataResult<List<JobDto>>(jobDao.getInActiveJobData(), "Tüm inaktif iş ilanları listelendi.");
+		return new SuccessDataResult<List<JobDto>>(jobDao.getInactiveJobData(), "Tüm inaktif iş ilanları listelendi.");
 	}
 	
 	@Override
@@ -82,5 +91,24 @@ public class JobManager implements JobService {
 	@Override 
 	public DataResult<List<JobDto>> getActiveJobByLastApplicationDateData(LocalDate date){
 		return new SuccessDataResult<List<JobDto>>(jobDao.getActiveJobByLastApplicationDateData(date), "Tüm aktif ilanları son başvuru tarihine göre sıralandı.");
+	}
+
+	@Override
+	public DataResult<JobDto> getJobData(int jobId) {
+		if(!jobDao.existsById(jobId)) return new ErrorDataResult<JobDto>("İş ilanı mevcut değil.");
+		return new SuccessDataResult<JobDto>(jobDao.getJobData(jobId), "İş ilanı getirildi.");
+	}
+
+	@Override
+	public Result addToFavorite(FavoriteJob favoriteJob) {
+		favoriteJobDao.save(favoriteJob);
+		return new SuccessResult("Favorilere eklendi.");
+	}
+
+	@Override
+	public DataResult<PaginatedJobDto> getFilteredJobWithPaginationData(JobFilterDto jobFilter, int activePage, int pageSize) {
+		Page<JobDto> jobDto = jobDao.getFilteredJobWithPaginationData(jobFilter,PageRequest.of(activePage - 1, pageSize));
+		PaginatedJobDto paginatedJobDto = new PaginatedJobDto(jobDto.getContent(), jobDto.getTotalElements());
+		return new SuccessDataResult<PaginatedJobDto>(paginatedJobDto, "Filtrelenmiş iş ilanları getirildi.");
 	}
 }

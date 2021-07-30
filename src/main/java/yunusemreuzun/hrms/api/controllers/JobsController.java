@@ -20,8 +20,11 @@ import org.springframework.web.bind.annotation.RestController;
 import yunusemreuzun.hrms.business.abstracts.JobService;
 import yunusemreuzun.hrms.core.utilities.results.DataResult;
 import yunusemreuzun.hrms.core.utilities.results.Result;
+import yunusemreuzun.hrms.entities.concretes.FavoriteJob;
 import yunusemreuzun.hrms.entities.concretes.Job;
 import yunusemreuzun.hrms.entities.dtos.JobDto;
+import yunusemreuzun.hrms.entities.dtos.JobFilterDto;
+import yunusemreuzun.hrms.entities.dtos.PaginatedJobDto;
 
 @RestController
 @RequestMapping("/api/jobs")
@@ -68,5 +71,19 @@ public class JobsController extends Controller{
 	public Result deactivateJob(Integer id) {
 		return jobService.deactivateJob(id);
 	}
-
+	
+	@GetMapping("/get-job")
+	public DataResult<JobDto> getJobData(@RequestParam int jobId) {
+		return jobService.getJobData(jobId);
+	}
+	
+	@PostMapping("/add-to-favorite")
+	public Result addToFavorite(@RequestBody FavoriteJob favoriteJob) {
+		return jobService.addToFavorite(favoriteJob);
+	}
+	
+	@PostMapping("/get-job-filtered-with-pagination")
+	public DataResult<PaginatedJobDto> getFilteredJobWithPaginationData(@RequestBody JobFilterDto jobFilterDto, @RequestParam int activePage, @RequestParam int pageSize){
+		return jobService.getFilteredJobWithPaginationData(jobFilterDto, activePage, pageSize);
+	}
 }

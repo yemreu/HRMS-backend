@@ -14,6 +14,7 @@ public class JobDto {
 	private int id;
 	private String companyName; //EmployerUser.companyName
 	private String jobTitle; //JobTitle.title
+	private String city; //City.code
 	private String description;
 	private String minSalary;
 	private String maxSalary;
