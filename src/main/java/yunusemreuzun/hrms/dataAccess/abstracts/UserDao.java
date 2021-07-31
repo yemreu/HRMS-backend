@@ -6,5 +6,4 @@ import yunusemreuzun.hrms.entities.concretes.User;
 
 public interface UserDao extends JpaRepository<User, Integer>{
 
-	User getById(int id);
 }
